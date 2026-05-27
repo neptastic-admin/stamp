@@ -1,15 +1,8 @@
-"use client";
-
+import Image from "next/image";
 import { Flame, ArrowRight, Smartphone } from "lucide-react";
 import { BUSINESS_INFO } from "../data";
 
 export default function Hero() {
-  const handleScrollToSegment = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <section className="relative overflow-hidden bg-slate-50 border-b border-slate-100 py-16 sm:py-24">
@@ -42,13 +35,13 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-3">
-              <button
-                onClick={() => handleScrollToSegment("stamp-customizer")}
+              <a
+                href="#stamp-customizer"
                 className="bg-indigo-950 hover:bg-slate-900 border border-slate-850 text-white font-sans font-medium py-3.5 px-6 rounded-2xl shadow-xl flex items-center justify-center gap-2.5 transition transform hover:-translate-y-0.5"
               >
                 <span>Design Your Stamp Online</span>
                 <ArrowRight className="w-4.5 h-4.5 text-rose-500" />
-              </button>
+              </a>
 
               <a
                 href={BUSINESS_INFO.whatsappUrl}
@@ -96,11 +89,13 @@ export default function Hero() {
               </span>
 
               <div className="aspect-[4/3] w-full rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src="/stamp-mockup.png"
                   alt="Luxury stamp handle mockup"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  priority
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
                 <span className="absolute bottom-3 left-3 text-xs font-semibold text-white">
@@ -122,12 +117,7 @@ export default function Hero() {
                 <span className="font-bold text-indigo-950 font-mono">
                   Custom Layout Ready
                 </span>
-                <button
-                  onClick={() => handleScrollToSegment("stamp-customizer")}
-                  className="text-rose-600 font-bold hover:underline"
-                >
-                  Pre-order Now
-                </button>
+                <a href="#stamp-customizer" className="text-rose-600 font-bold hover:underline">Pre-order Now</a>
               </div>
             </div>
           </div>

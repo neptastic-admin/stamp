@@ -1,13 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { BUSINESS_INFO } from "../data";
 
 export default function Header() {
-  const pathname = usePathname();
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
@@ -38,7 +34,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={pathname === item.href ? "text-indigo-950" : "hover:text-amber-600 transition"}
+                className="hover:text-amber-600 transition"
               >
                 {item.label}
               </Link>

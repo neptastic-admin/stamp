@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { BUSINESS_INFO } from "@/src/data";
+import dynamic from "next/dynamic";
+
+const DeferredAnalytics = dynamic(() => import("@/src/components/DeferredAnalytics"));
 
 const siteUrl = `https://${BUSINESS_INFO.website}`;
 
@@ -49,23 +51,7 @@ export default function RootLayout({
           href="/apple-touch-icon.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-2WDQ7WNL0J"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-2WDQ7WNL0J');
-            `,
-          }}
-        />
+        <DeferredAnalytics />
       </head>
       <body>{children}</body>
     </html>

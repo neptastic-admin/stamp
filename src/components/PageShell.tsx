@@ -1,8 +1,8 @@
-"use client";
-
 import Header from "./Header";
 import Footer from "./Footer";
-import ChatAssistant from "./ChatAssistant";
+import dynamic from "next/dynamic";
+
+const DeferredChatLoader = dynamic(() => import("./DeferredChatLoader"));
 
 type PageShellProps = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export default function PageShell({ children }: PageShellProps) {
       <Header />
       <main>{children}</main>
       <Footer />
-      <ChatAssistant />
+      <DeferredChatLoader />
     </div>
   );
 }
